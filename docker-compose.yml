@@ -1,8 +1,17 @@
 version: "3.9"
 services:
+  server:
+    build: ./server
+    volumes:
+      - ./server:/app
+    ports:
+      - "3000:3000"
   ui:
-    build: ./ledger-ui
+    build: ./ui
+    volumes:
+      - ./ui:/app
     ports:
       - "8080:8080"
-  # redis:
-  #   image: "redis:alpine"
+    environment:
+      - NODE_OPTIONS=--openssl-legacy-provider=value
+      

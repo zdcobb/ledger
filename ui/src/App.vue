@@ -1,12 +1,10 @@
 <template>
   <div class="main">
-    <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
     <login/>
   </div>
 </template>
 
 <script>
-// import HelloWorld from './components/HelloWorld.vue'
 import login from './login/login.vue'
 
 export default {

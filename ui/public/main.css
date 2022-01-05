@@ -1,0 +1,25 @@
+body {
+    /* dark purple */
+    /* background-color: #322843; */
+    /* dark blue */
+    /* background-color: #071C2D; */
+    /* background-color: #17222b; */
+    background-color: #D3D3DF;
+}
+.input {
+    border-radius: 5px;
+    padding: 8px;
+    margin: 5px 0;
+    border: 1px solid #CECECE;
+    min-width: 225px;
+}
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    margin: 5px;
+    font-size: 14pt;
+    font-weight: 1000;
+}
+.btn-prime {
+}
