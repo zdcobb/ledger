@@ -9,7 +9,16 @@ if [[ ! -z ${status} ]]; then
     docker rm -f ledger
 fi
 
-docker build -t ledger .
+### build ui and server images
+docker build -t ledger-ui ./ui
+docker build -t ledger-server ./server
+
+## run server, then UI with active shell
+docker run -d \
+    -p 3000:3000 \
+    -v $(pwd)/server:/app \
+    --name ledger-server \
+    ledger-server
 
 docker run -it \
     -p 8080:8080 \

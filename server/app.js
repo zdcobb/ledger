@@ -1,8 +1,10 @@
+'use strict';
+
 const express = require('express');
 const { process } = require('ipaddr.js');
 const app = express();
 const config = require('./config');
-const login = require('./api/routes/login');
+const login = require('./api/login');
 
 app.disable('x-powered-by');
 
