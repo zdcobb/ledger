@@ -1,20 +1,9 @@
-import { createApp } from 'vue'
-import { createStore } from 'vuex';
-import App from './App.vue'
+import { createApp } from 'vue';
+import App from './App.vue';
+import Router from './router';
+import Store from './store/store';
 
-const store = new createStore({
-    state() {
-        return {
-            user: undefined
-        }
-    },
-    mutations: {
-        setUser(state, user) {
-            state.user = user;
-        }
-    }
-});
-
-const app = createApp(App)
-    .use(store)
+createApp(App)
+    .use(Router)
+    .use(Store)
     .mount('#app');

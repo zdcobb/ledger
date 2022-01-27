@@ -5,10 +5,12 @@ body {
     /* background-color: #071C2D; */
     /* background-color: #17222b; */
     background-color: #D3D3DF;
+    margin: 0;
+    height: 100vh;
 }
 .input {
-    border-radius: 5px;
-    padding: 8px;
+    border-radius: 10px;
+    padding: 8px 12px;
     margin: 5px 0;
     border: 1px solid #CECECE;
     min-width: 225px;
@@ -16,10 +18,7 @@ body {
 .btn {
     padding: 10px 20px;
     border: none;
-    border-radius: 5px;
+    border-radius: 10px;
     margin: 5px;
-    font-size: 14pt;
-    font-weight: 1000;
-}
-.btn-prime {
+    font-size: 12pt;
 }
