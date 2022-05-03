@@ -8,9 +8,9 @@ const login = require('./api/login');
 
 app.disable('x-powered-by');
 
-app.use(function(req, res, next) {
+app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.header("Access-Control-Allow-Headers", "Origin, Content-Type, Accept");
   next();
 });
 
@@ -24,8 +24,7 @@ app.post('/close', (req, res) => {
   process.kill();
 });
 
-
-app.use('/login', login);
+app.use(login);
 
 app.listen(config.PORT, () => {
   console.log(`Example app listening at http://localhost:${config.PORT}`);

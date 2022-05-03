@@ -7,15 +7,26 @@ const express = require('express');
 const router = express.Router();
 let handlers = require('./handlers');
 
-router.use(express.json());
-router.post('/', function(req, res) {
-    console.log('Fetching account for user: ', req.body);
-    console.log(typeof req.body);
+function callWrapper(handlerFn, argsArr,) {
+    try {
+        return handlerFn(...argsArr);
+    } catch (err) {
+        if (err instanceof ReferenceError) {
+            res.status(404)
+        } else {
+            res.status(400)
+        }
+        const errMsg = 'Uh oh, something went wrong trying to fetch your user data: ' + err;
+        console.error(errMsg);
+        res.send(errMsg);
+    }
+}
 
+router.use(express.json());
+router.post('/login', (req, res) => {
+    console.log('Received login request...');
     try {
         let response = handlers.getUser(req.body);
-        console.log('User found! -----');
-        console.log(response);
         res.send(response);
     }
     catch (err) {
@@ -29,5 +40,15 @@ router.post('/', function(req, res) {
         res.send(errMsg);
     }
 });
+
+// router.post('/register', function(req, res) {
+//     let response = handlers.registerUser(req.body);
+//     res.send(response);
+// });
+
+// router.get('/landing', function(req, res) {
+//     let response = handlers.getUserPages(req.body);
+//     res.send(response);
+// });
 
 module.exports = router;
