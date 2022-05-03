@@ -1,4 +1,5 @@
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Courgette&display=swap');
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -9,63 +10,30 @@
 }
 .main {
   height: 100%;
-}
-.navbar {
   display: flex;
-  padding: 10px 15px;
-  color: #666;
-}
-.user-group {
-  flex-grow: 1;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-}
-.user-group a {
-  text-decoration: none;
-}
-.username {
-  margin: 10px;
-}
-.fa-user-circle {
-  font-size: 24pt;
-}
-.fa-bars {
-  font-size: 20pt;
+  flex-flow: column;
+  align-items: stretch;
 }
 </style>
 <template>
-  <div class="main">
-    <div class="navbar">
-      <div class="menu">
-        <i class="fas fa-bars"></i>
-      </div>
-      <div class="user-group">
-          <div class="username">
-            <span v-if="user">{{user.username}}</span>
-            <router-link to="/login" v-else>log in</router-link>
-          </div>
-          <i class="fas fa-user-circle" @click="clickUser('hello')"></i>
-      </div>
-    </div>
-    <router-view></router-view>
-  </div>
+<div class="main">
+  <navbar></navbar>
+  <router-view></router-view>
+</div>
 </template>
 
 <script>
 import { mapState } from 'vuex';
-import home from './views/Home';
-import login from './views/Login';
+import navbar from './components/navbar.vue';
 
 export default {
   name: 'App',
+  components: {
+    navbar
+  },
   computed: mapState([
     'user'
   ]),
-  components: {
-    home,
-    login
-  },
   methods: {
     clickUser(param) {
       console.log(`User clicked: ${param}`)

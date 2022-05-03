@@ -2,34 +2,48 @@
 .login-body {
     display: flex;
     flex-flow: column;
-    justify-content: center;
-    align-items: center;
-    margin: 50px;
+    /* justify-content: center;
+    align-items: center; */
+    margin: 25px auto;
 }
 .login-box {
     background-color: #F9F9F9;
-    padding: 10px 20px;
+    box-shadow: 0 0 5px #999;
+    padding: 10px 25px;
     display: flex;
     flex-flow: column;
     justify-content: space-between;
-    align-items: center;
+    align-items: stretch;
     border-radius: 25px;
 }
 .login-header {
+    margin-top: 10px;
     font-size: 36pt;
-    color: #48A8FD;
+    font-family: 'Courgette';
+	color: #42a5f5;
 }
 .login-inputs-group {
-    margin: 10px;
+    margin: 15px 10px;
     display: flex;
     flex-flow: column;
 }
 .btn {
-    background-color: #48A8FD;
+    background-color: #42a5f5;
     color: white;
+    margin: 20px 0 0 0;
 }
 .btn:disabled {
     background-color: grey;
+}
+.help-row {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px;
+}
+.help-link {
+    font-size: 10pt;
+    color: darkblue;
+    font-weight: 800;
 }
 .back-link {
     margin: 10px;
@@ -40,7 +54,7 @@
     <div class="login-body">
         <div class="login-box">
             <div class="login-header">
-                <span>Welcome!</span>
+                <span>Ledger</span>
             </div>
 
             <div v-if="user">
@@ -52,13 +66,17 @@
                 <div class="login-inputs-group">
                     <input class="input" type="text" placeholder="Who are you?" v-model="this.username">
                     <input class="input" type="password" placeholder="password" v-model="this.password">
+                    <button class="btn" type="submit" @click="loginClicked" :disabled="this.debounced">log in</button>
                 </div>
-                <button class="btn" type="submit" @click="loginClicked" :disabled="this.debounced">log in</button>
+                <div class="help-row">
+                    <span class="help-link">New here?</span>
+                    <span class="help-link">Forgot?</span>
+                </div>
             </template>
         </div>
 
         <div class="back-link">
-            <router-link to="/">back</router-link>
+            <span @click="backClicked">go back</span>
         </div>
     </div>
 </template>
@@ -82,34 +100,37 @@ export default {
         'setUser'
     ]),
     methods: {
+        backClicked() {
+            this.$router.go(-1)
+        },
         loginClicked() {
-            this.debounce();
-            this.postLogin(this.username, this.password);
+            this.debounce()
+            this.postLogin(this.username, this.password)
         },
         logoutClicked() {
-            this.$store.commit('setUser', undefined);
+            this.$store.commit('setUser', undefined)
         },
-        postLogin () {
+        postLogin (username, password) {
             const options = {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
-                    username: this.username,
-                    password: this.password
+                    username: username,
+                    password: password
                 })
-            };
+            }
             fetch(`http://${SERVER_URL}:${PORT}/login`, options)
                 .then(response => response.json())
                 .then(data => {
-                    this.$store.commit('setUser', data);
-                    this.$router.push({path: '/'});
+                    this.$store.commit('setUser', data)
+                    this.$router.push({path: '/'})
                 });
         },
         debounce () {
-            this.debounced = true;
+            this.debounced = true
             setTimeout(() => {
-                this.debounced = false;
-            }, 5000);
+                this.debounced = false
+            }, 5000)
         }
     }
 }

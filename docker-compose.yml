@@ -5,12 +5,12 @@ services:
     volumes:
       - ./server:/app
     ports:
-      - "3000:3000"
+      - "4000:4000"
   ui:
-    build: ./ui
+    build: ./react-ui
     volumes:
-      - ./ui:/app
+      - ./react-ui:/app
     ports:
-      - "8080:8080"
+      - "3000:3000"
     environment:
       - NODE_OPTIONS=--openssl-legacy-provider=value

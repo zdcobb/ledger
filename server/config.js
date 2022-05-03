@@ -1,4 +1,4 @@
 module.exports = {
     "SERVER_URL": "localhost",
-    "PORT": 3000
+    "PORT": 4000
 }
