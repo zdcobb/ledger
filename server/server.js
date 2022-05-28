@@ -1,19 +1,17 @@
 "use strict";
+const { ApolloServer } = require("apollo-server");
+const { typeDefs } = require("./graphql/typeDefs");
+const { resolvers } = require("./graphql/resolvers");
+// const { mocks } = require("./graphql/mocks");
 
-const express = require("express");
-const { graphqlHTTP } = require("express-graphql");
-const { schema } = require("./schema/schema");
-const app = express();
-
-app.disable("x-powered-by");
-app.use(
-  "/",
-  graphqlHTTP({
-    schema: schema,
-    graphiql: true,
-  })
-);
-
-app.listen(4000, () => {
-  console.log("Server up and running, listening to port 4000...");
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+  csrfPrevention: true,
+  mocks: false,
 });
+
+server.listen().then(({ url }) => {
+  console.log(`Server listening at ${url}`);
+});
+

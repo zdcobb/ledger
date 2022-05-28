@@ -2,13 +2,20 @@ const {
   GraphQLSchema,
   GraphQLObjectType,
   GraphQLList,
+  GraphQLScalarType,
   GraphQLID,
   GraphQLString,
-  buildSchema,
 } = require("graphql");
 
 // testing only -- remove for prod
 const { users, ledgers } = require("../db/fixtures");
+
+const DateType = new GraphQLScalarType({
+  name: "Date",
+  serialize: (value) => value,
+  parseValue: (value) => value,
+  parseLiteral: (value) => value,
+});
 
 const UserType = new GraphQLObjectType({
   name: "User",
@@ -17,6 +24,9 @@ const UserType = new GraphQLObjectType({
     email: { type: GraphQLString },
     fname: { type: GraphQLString },
     lname: { type: GraphQLString },
+    dob: { type: DateType },
+    first_login: { type: DateType },
+    last_login: { type: DateType },
     ledgers: {
       type: new GraphQLList(LedgerType),
       resolve(parent) {
@@ -74,24 +84,6 @@ const RootQueryType = new GraphQLObjectType({
     },
   },
 });
-
-// const schema = new GraphQLSchema(RootQueryType);
-
-// let schema = buildSchema(`
-//   type User {
-//     id: Int,
-//     fname: String!,
-//     lname: String,
-//     ledgers: [ledgers]
-//   },
-//   type Ledgers {
-//     id: Int,
-//     name: String!
-//   }
-//   type Query {
-
-//   }
-// `);
 
 module.exports = {
   schema: new GraphQLSchema({ query: RootQueryType }),

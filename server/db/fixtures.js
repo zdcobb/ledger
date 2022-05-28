@@ -34,61 +34,61 @@ module.exports = {
     {
       id: "1",
       name: "Monthly Bills 1/2",
-      author_id: 1,
+      author: "1",
       last_opened: new Date(5, 19, 2022),
     },
     {
       id: "2",
       name: "Bills 2/2",
-      author_id: 1,
+      author: "1",
       last_opened: new Date(5, 19, 2022),
     },
     {
       id: "3",
       name: "Some scrap paper...",
-      author_id: 3,
+      author: "3",
       last_opened: new Date(1, 3, 2022),
     },
   ],
 
   pages: [
     {
-      id: 1,
-      ledger_id: 1,
+      id: "1",
+      ledger_id: "1",
       date_archived: undefined,
     },
     {
-      id: 2,
-      ledger_id: 2,
+      id: "2",
+      ledger_id: "2",
       date_archived: undefined,
     },
     {
-      id: 3,
-      ledger_id: 3,
+      id: "3",
+      ledger_id: "3",
       date_archived: undefined,
     },
     {
-      id: 4,
-      ledger_id: 1,
+      id: "4",
+      ledger_id: "1",
       date_archived: new Date(1, 20, 2022),
     },
   ],
 
   collections: [
     {
-      id: 1,
-      page_id: 1,
+      id: "1",
+      page_id: "1",
       name: "I Paid",
     },
     {
-      id: 2,
-      page_id: 1,
+      id: "2",
+      page_id: "1",
       name: "Nat paid",
     },
   ],
   accounts: [
     {
-      id: 1,
+      id: "1",
       // collection_id: 1,
       name: "Electricity bill",
       recurring: true,
@@ -99,7 +99,7 @@ module.exports = {
   ],
   transactions: [
     {
-      id: 1,
+      id: "1",
       name: "I paid",
       action: "combine",
       order: 1, // maybe not necessary, can use ID instead?
@@ -108,14 +108,14 @@ module.exports = {
 
   accounts_to_trx: [
     {
-      id: 1,
-      trx_id: 1,
-      account_id: 1,
+      id: "1",
+      trx_id: "1",
+      account_id: "1",
     },
     {
-      id: 2,
-      trx_id: 1,
-      account_id: 2,
+      id: "2",
+      trx_id: "1",
+      account_id: "2",
     },
   ],
 };
