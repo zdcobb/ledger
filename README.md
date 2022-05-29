@@ -1,6 +1,6 @@
 # Ledger
 
-1.0.0
+## 1.0.0
 Howdy, welcome to ledger! Started as a small app to noodle around with and learn React and other tools/libraries. What is it? A little tool to keep track of monthly bills, payments, and other transactions you may need to track, combine, split, save, etc.
 
 If you want to build/run it yourself, feel free. The only real requirement is docker. All you gotta do is clone the repo and run the docker-compose like so
