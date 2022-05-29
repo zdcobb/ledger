@@ -13,7 +13,7 @@ This will build the images and start up the api server and the react ui @ http:/
 - JavaScript
 - React
 - <s>Vue (retired)</s>
-- Graphql
+- Apollo-Graphql
 - Node.js
 - Docker
 
