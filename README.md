@@ -22,10 +22,10 @@ This will build the images and start up the api server and the react ui @ http:/
 - add prisma and sqlite db
 - Authentication and Authorization w/ JWT
 - Add components for:
--- page
--- groups/lists of transactions
--- individual transactions, save
--- history/saved pages
+  + page
+  + groups/lists of transactions
+  + individual transactions
+  + history/saved pages
 
 ### later on...
 - add server for ui to replace dev server
@@ -33,6 +33,6 @@ This will build the images and start up the api server and the react ui @ http:/
 - host on AWS or similar
 
 ### loose ideas: 
--- history tab of all lists created, 
--- save/load template of frequently used lists
--- shared-lists - many-to-many for any lists shared with other users ()
+- history tab of all lists created, 
+- save/load template of frequently used lists
+- shared-lists - many-to-many for any lists shared with other users ()
