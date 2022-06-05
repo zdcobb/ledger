@@ -15,7 +15,6 @@ export default function Landing() {
             </Link>
           ) : (
             <>
-              {" "}
               <Link to="login">
                 <button>log in</button>
               </Link>
@@ -25,18 +24,6 @@ export default function Landing() {
             </>
           )}
         </div>
-        {Object.keys(user).length > 0 ? (
-          <div className="btn-group"></div>
-        ) : (
-          <div className="btn-group">
-            <Link to="login">
-              <button>log in</button>
-            </Link>
-            <Link to="register">
-              <button>register</button>
-            </Link>
-          </div>
-        )}
       </div>
     );
 }

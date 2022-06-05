@@ -2,10 +2,11 @@ import React from 'react';
 import { gql, useQuery } from "@apollo/client";
 // components
 import QueryResults from "../components/queryResults";
+import LedgersList from "../components/ledgersList";
 
 const LEDGERS = gql`
-  query getLedgers {
-    userLedgers {
+  query getLedgers($author_id: ID!) {
+    userLedgers(author_id: $author_id) {
       id
       name
       author {
@@ -17,9 +18,9 @@ const LEDGERS = gql`
 `;
 
 export default function Dashboard() {
-  const { loading, error, data } = useQuery(LEDGERS);
-  if (loading) return "Loading...";
-  if (error) return `Error loading ledgers: ${error}`;
+  const { loading, error, data } = useQuery(LEDGERS, {
+    variables: { author_id: "1" },
+  });
 
   function clickAdd(event) {
     console.log("Button clicked!");
@@ -40,26 +41,3 @@ export default function Dashboard() {
     </QueryResults>
   );
 }
-
-function LedgersList(props) {
-  const {
-    ledgers: { userLedgers: ledgers },
-  } = props;
-
-  return !!ledgers && Array.isArray(ledgers) ? (
-    ledgers.map((row) => {
-      return <Ledger key={row.id} data={row} />;
-    })
-  ) : (
-    <li className="ledger-row">You don't have any ledgers.</li>
-  );
-}
-
-function Ledger(props) {
-  const { name, last_opened } = props.data;
-  return (
-    <li>
-      {name} // {String(last_opened)}
-    </li>
-  );
-};

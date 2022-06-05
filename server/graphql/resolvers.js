@@ -1,5 +1,4 @@
 const { GraphQLScalarType } = require("graphql");
-const { type } = require("os");
 const { users, ledgers } = require("../db/fixtures");
 
 const DateType = new GraphQLScalarType({
@@ -14,19 +13,33 @@ module.exports = {
   resolvers: {
     Date: DateType,
     Query: {
-      getUser: (_, args, { dataSources }) => {
-        // remove before merge
-        console.log("Getting user with args: ", args);
-
+      user: (_, args, { dataSources }) => {
+        console.debug(`Querying for user with ID: ${args.id}...`);
         return users.find((user) => String(user.id) === String(args.id));
       },
-      userLedgers: (_, __, { dataSources }) => {
-        return [...ledgers];
+      userLedgers: (_, { author_id }, { dataSources }) => {
+        console.debug(`Querying for ledgers owned by user ${author_id}...`);
+        return ledgers.filter((ledger) => ledger.author == author_id);
+      },
+    },
+    Mutation: {
+      registerUser: (_, { newUser }, { dataSources }) => {
+        console.debug(`Registering new user: `);
+        console.debug(newUser);
+        try {
+          newUser.id = "12345";
+          newUser.first_login = new Date();
+          newUser.last_login = new Date();
+          users.push(newUser);
+          return newUser;
+        } catch (err) {
+          return err;
+        }
       },
     },
     Ledger: {
-      author: (parent, _, { dataSources }) => {
-        return users.find((user) => String(user.id) === String(parent.author));
+      author: ({ author }, _, { dataSources }) => {
+        return users.find((user) => String(user.id) === String(author));
       },
     },
   },

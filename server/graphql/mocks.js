@@ -1,7 +1,7 @@
 module.exports = {
   mocks: {
     Query: () => ({
-      getUser: () => this.User,
+      user: () => this.User,
       userLedgers: () => [this.Ledger],
     }),
     User: () => ({

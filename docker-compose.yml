@@ -10,6 +10,7 @@ services:
     build: ./react-ui
     volumes:
       - ./react-ui:/app
+      - ./vue-ui (depricated)
     ports:
       - "3000:3000"
     environment:
