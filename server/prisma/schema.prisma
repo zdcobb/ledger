@@ -1,0 +1,40 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:/app/db/ledger.db"
+}
+
+model User {
+  id String @id @default(uuid())
+  password String
+  email String @unique
+  fname String
+  lname String
+  dob DateTime
+  first_login DateTime @default(now())
+  last_login DateTime @default(now())
+  ledgers Ledger[]
+}
+
+model Ledger {
+  id String @id @default(uuid())
+  name String
+  last_opened DateTime @default(now())
+  author User @relation(fields: [author_id], references: [id])
+  author_id String
+  pages Page[]
+}
+
+model Page {
+  id Int @id @default(autoincrement())
+  last_opened DateTime @default(now())
+  is_archived Boolean @default(false)
+  ledger Ledger @relation(fields: [ledger_id], references: [id])
+  ledger_id String
+}
