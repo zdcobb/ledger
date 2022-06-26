@@ -7,7 +7,7 @@ generator client {
 
 datasource db {
   provider = "sqlite"
-  url      = "file:/app/db/ledger.db"
+  url      = env("DATABASE_URL")
 }
 
 model User {
@@ -16,7 +16,7 @@ model User {
   email String @unique
   fname String
   lname String
-  dob DateTime
+  dob DateTime?
   first_login DateTime @default(now())
   last_login DateTime @default(now())
   ledgers Ledger[]

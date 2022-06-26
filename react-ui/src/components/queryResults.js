@@ -5,7 +5,10 @@ export default function QueryResults({ loading, error, children }) {
   }
 
   if (error) {
-    return <p>There was error fetching the data: {error}</p>;
+    console.log("There was an error fetching the data...");
+	console.log(error);
+
+	return <p>There was error fetching the data...</p>;
   }
 
   return children;

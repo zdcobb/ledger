@@ -1,11 +1,46 @@
 const { PrismaClient } = require("@prisma/client");
 
-export const prisma = new PrismaClient();
+const prisma = new PrismaClient();
 
-// endpoints
+module.exports = {
+	prisma,
+	// endpoints
+	registerUser: async function (user) {
+		return await prisma.user.create({
+			data: { user },
+		});
+	},
 
-export const user = await prisma.user.create({});
+	getUser: async function ({ id }) {
+		return await prisma.user.find({
+			where: { id },
+		});
+	},
 
-export async function registerUser() {}
+	getUserLedgers: async function ({ id }) {
+		return await prisma.ledger.find({
+			where: { author_id: id },
+		});
+	},
 
-export async function getUserLedgers() {}
+	createLedger: async function ({ id, name }) {
+		return await prisma.ledger.create({
+			data: {
+				author_id: id,
+				name,
+				pages: {
+					create: {},
+				},
+			},
+		});
+	},
+
+	getLedger: async function ({ id }) {
+		return await prisma.ledger.find({
+			where: { id },
+			include: {
+				pages: true,
+			},
+		});
+	},
+};
