@@ -4,13 +4,15 @@ services:
     build: ./server
     volumes:
       - ./server:/app
+      - /app/node_modules
+      - /app/db
     ports:
       - "4000:4000"
   ui:
     build: ./react-ui
     volumes:
       - ./react-ui:/app
-      - ./vue-ui (depricated)
+      - /app/node_modules
     ports:
       - "3000:3000"
     environment:
