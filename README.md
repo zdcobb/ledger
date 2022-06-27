@@ -12,9 +12,9 @@ This will build the images and start up the api server and the react ui @ http:/
 ## Stack so far
 - JavaScript
 - React
-- <s>Vue (retired)</s>
+- <s>Vue</s> (retired)
 - Apollo-Graphql
-- Node.js (server)
+- Node.js
 - Prisma (and prisma/client)
 - sqlite3
 - Docker
