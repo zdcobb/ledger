@@ -14,12 +14,12 @@ This will build the images and start up the api server and the react ui @ http:/
 - React
 - <s>Vue (retired)</s>
 - Apollo-Graphql
-- Node.js
+- Node.js (server)
+- Prisma (and prisma/client)
+- sqlite3
 - Docker
 
 ## TODO
-- add graphql
-- add prisma and sqlite db
 - Authentication and Authorization w/ JWT
 - Add components for:
   + page
