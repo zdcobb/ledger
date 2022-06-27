@@ -26,6 +26,7 @@ This will build the images and start up the api server and the react ui @ http:/
   + groups/lists of transactions
   + individual transactions
   + history/saved pages
+- <b>STYLING!</b> (css modules is the plan)
 
 ### later on...
 - add server for ui to replace dev server
